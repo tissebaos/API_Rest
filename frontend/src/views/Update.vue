@@ -248,7 +248,7 @@ export default {
       const dynamicId = this.user.id;
       // const clearToken = localStorage.clear("userToken");
       this.$store
-        .dispatch("deleteUser", { dynamicId })
+        .dispatch("deleteAccount", { dynamicId })
         .then((response) => {
           console.log(response);
           if (response) {
@@ -262,14 +262,14 @@ export default {
 
     // createUpdatePost
     _updateUser: function () {
-      // const updateUser = `api/account/me/${this.user.id}`;
+      //const updateUser = `api/user/account/${this.user.id}`;
       const thisFirstName = this.firstName;
       const thisLastName = this.lastName;
       const thisUserName = this.userName;
       const thisEmail = this.email;
       const thisPassword = this.password;
       this.$store
-        .dispatch("updateUser", {
+        .dispatch("updateProfil", {
           thisFirstName,
           thisLastName,
           thisUserName,

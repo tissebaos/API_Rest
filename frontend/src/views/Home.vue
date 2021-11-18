@@ -60,7 +60,6 @@ export default {
   },
 
   created() {
-    console.log("getallpost");
 
     this.$store.dispatch("getAllPost");
   },

@@ -220,7 +220,7 @@ export default createStore({
             let formData = new FormData();
             formData.append("image", comment.image);
             formData.append("comment", comment.commentaire);
-            console.log("formData", formData);
+            //console.log("formData", formData);
             const createComment = `api/comment/${comment.postId}`;
             return new Promise((resolve, reject) => {
                 axios
@@ -304,22 +304,22 @@ export default createStore({
         },
 
         deleteAccount({ commit }, user) {
+            const deleteAccount = `api/user/account/${user.dynamicId}`;
             const confirmDelete = confirm(
                 "Êtes vous sûr de vouloir supprimer votre compte ?"
             );
             if (confirmDelete) {
-                const deleteAccount = `api/user/account/${user.dynamicId}`;
                 // const clearToken = localStorage.clear("userToken");
                 return new Promise((resolve, reject) => {
                     axios
                         .delete(deleteAccount)
                         .then((response) => {
-                            console.log(response);
+                            //console.log(response);
                             if (response) {
                                 localStorage.clear("userToken");
-                                commit("user");
+                                commit("users");
+                                resolve(response);
                             }
-                            resolve(response);
                         })
                         .catch((error) => {
                             console.log(error);
@@ -335,6 +335,7 @@ export default createStore({
             console.log(comment);
             commit("comment", comment);
         },
+
     },
 
     mutations: {

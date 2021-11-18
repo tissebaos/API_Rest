@@ -415,18 +415,17 @@ exports.deleteAccount = (req, res) => {
             .then((user) => {
                 //après avoir trouvé l'id de user on cherche tous les id associé a l'id trouvé plus haut
                 Post.findAll({
-                        where: { idUser: deletedUser },
+                        where: { userId: deletedUser },
                     })
                     .then((post) => {
-                        console.log("poster =>", post);
                         Comment.findAll({
-                                where: { idUser: deletedUser },
+                                where: { userId: deletedUser },
                             })
                             .then((comment) => {
                                 if (user && (user.isAdmin || deletedUser == loggedUser)) {
                                     User.destroy({
                                             where: {
-                                                id: deletedUser,
+                                                "id": deletedUser,
                                             },
                                         })
                                         .then((destroyed) => {
