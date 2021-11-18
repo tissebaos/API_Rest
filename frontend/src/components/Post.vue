@@ -268,6 +268,11 @@ export default {
   .text-name {
     text-transform: capitalize;
   }
+
+  .btn {
+      display: inline-block;
+      width: 100%;
+    }
 }
 
 .card-footer {

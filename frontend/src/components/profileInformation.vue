@@ -117,7 +117,7 @@ export default {
 
   mounted() {
     const userIdDynamic = this.user.id;
-    const getUserProfil = `api/account/me/${userIdDynamic}`;
+    const getUserProfil = `api/user/account/${userIdDynamic}`;
     axios
       .get(getUserProfil)
       .then((response) => {

@@ -6,15 +6,17 @@
       size="2x"
       for="imageFile"
     />
-    <span class="title-image">Ajouter image</span>
-    <input
-      accept="image/*"
-      type="file"
-      id="FileInput"
-      ref="image"
-      name="image_attachment_upload"
-      v-on:change="handleFileUpload()"
-    />
+    <span class="add-img">
+      <span class="title-image">Ajouter image</span>
+      <input
+        accept="image/*"
+        type="file"
+        id="FileInput"
+        ref="image"
+        name="image_attachment_upload"
+        v-on:change="handleFileUpload()"
+      />
+    </span>
   </label>
 </template>
 
@@ -45,12 +47,26 @@ export default {
   margin: 0 5px 0 5px;
   color: grey;
   cursor: pointer;
-  &:hover {
-    color: blue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px !important;
+    justify-content: space-between;
+    input {
+      display: inline-block;
+      margin-right: 5px;
+      height: 100% !important;
+    }
+  &:hover .title-image {
+    color: rgb(5, 47, 160);
   }
   .title-image {
     margin: 0 5px 0 5px;
     color: #575757;
   }
 }
+
 </style>

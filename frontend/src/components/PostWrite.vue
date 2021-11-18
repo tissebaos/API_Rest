@@ -124,12 +124,17 @@ export default {
   #FileInput {
     display: none;
   }
+    .form-control {
+      height: 100% !important;
+    }
+    
+
   .addImage {
     margin: 0 5px 0 5px;
     color: grey;
     cursor: pointer;
     &:hover {
-      color: blue;
+      color: rgb(5, 47, 160);
     }
     .title-image {
       margin: 0 5px 0 5px;

@@ -167,7 +167,6 @@ header {
       .title {
         .bg-primary {
           @include fontFamilly;
-          // background: rgb(145, 169, 120);
         }
       }
     }
