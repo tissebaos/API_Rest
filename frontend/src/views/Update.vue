@@ -247,10 +247,10 @@ export default {
     _deleteUser: function () {
       const dynamicId = this.user.id;
       // const clearToken = localStorage.clear("userToken");
+      console.log("response delete action");
       this.$store
         .dispatch("deleteAccount", { dynamicId })
         .then((response) => {
-          console.log(response);
           if (response) {
             this.$router.push({ name: "Login" });
           }

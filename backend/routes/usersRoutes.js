@@ -38,6 +38,6 @@ router.patch("/user/account", auth, usersCtrl.updateProfil);
 /**
  * @description connexion a un compte
  */
-router.delete("/user/account/:id", auth, usersCtrl.deleteAccount);
+router.delete("/user/account/:id", auth, usersCtrl.deletAccount);
 
 module.exports = router;

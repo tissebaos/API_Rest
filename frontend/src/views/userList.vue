@@ -59,10 +59,10 @@ export default {
   },
 
   mounted() {
-    const getAllUser = "api/account/";
+    const getAllUsers = "api/user/";
     return new Promise((resolve, reject) => {
       axios
-        .get(getAllUser)
+        .get(getAllUsers)
         .then((response) => {
           console.log(response);
           this.users = response.data.users;

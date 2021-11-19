@@ -304,7 +304,7 @@ export default createStore({
         },
 
         deleteAccount({ commit }, user) {
-            const deleteAccount = `api/user/account/${user.dynamicId}`;
+            const deletAccount = `api/user/account/${user.dynamicId}`;
             const confirmDelete = confirm(
                 "Êtes vous sûr de vouloir supprimer votre compte ?"
             );
@@ -312,7 +312,7 @@ export default createStore({
                 // const clearToken = localStorage.clear("userToken");
                 return new Promise((resolve, reject) => {
                     axios
-                        .delete(deleteAccount)
+                        .delete(deletAccount)
                         .then((response) => {
                             //console.log(response);
                             if (response) {

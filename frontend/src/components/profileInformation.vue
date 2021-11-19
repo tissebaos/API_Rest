@@ -35,12 +35,6 @@
             </ul>
           </div>
         </div>
-
-        <p class="about">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam
-        </p>
         <div class="mt-3">
           <label class="tx-11 font-weight-bold mb-0 text-uppercase"
             >Joined:</label
@@ -67,7 +61,7 @@
               d-flex
               justify-content-start
             "
-            >Pseudeo:</label
+            >Nom Utilisateur:</label
           >
           <p class="text-muted">{{ users.userName }}</p>
         </div>

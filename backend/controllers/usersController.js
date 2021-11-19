@@ -402,7 +402,7 @@ exports.updateProfil = (req, res) => {
     }
 };
 
-exports.deleteAccount = (req, res) => {
+exports.deletAccount = (req, res) => {
     const deletedUser = req.params.id;
     const loggedUser = req.params.userId; //l'id de user
 
@@ -418,69 +418,44 @@ exports.deleteAccount = (req, res) => {
                         where: { userId: deletedUser },
                     })
                     .then((post) => {
+                        console.log(post);
                         Comment.findAll({
                                 where: { userId: deletedUser },
                             })
                             .then((comment) => {
                                 if (user && (user.isAdmin || deletedUser == loggedUser)) {
-                                    User.destroy({
-                                            where: {
-                                                "id": deletedUser,
-                                            },
+
+                                    Comment.destroy({
+                                            where: { userId: deletedUser },
                                         })
-                                        .then((destroyed) => {
-                                            for (const posts of post) {
-                                                if (posts.imageUrl != null) {
-                                                    const fileName = posts.imageUrl.split("/images/")[1];
-                                                    fs.unlink(`images/${fileName}`, () => {
-                                                        if (!destroyed) {
-                                                            throw error;
-                                                        } else {
-                                                            // Si il n'y a pas d'erreur alors, l'erreur unlink est réussi
-                                                            console.log("File deleted!");
-                                                        }
-                                                    });
-                                                } else {
-                                                    if (!destroyed) {
-                                                        throw error;
-                                                    } else {
-                                                        // Si il n'y a pas d'erreur alors, l'erreur unlink est réussi
-                                                        console.log("File deleted!");
-                                                    }
-                                                }
-                                            }
-                                            for (const comments of comment) {
-                                                if (comments.imageUrl) {
-                                                    const fileName =
-                                                        comments.imageUrl.split("/images/")[1];
-                                                    fs.unlink(`images/${fileName}`, () => {
-                                                        if (!destroyed) {
-                                                            throw error;
-                                                        } else {
-                                                            // Si il n'y a pas d'erreur alors, l'erreur unlink est réussi
-                                                            console.log("File deleted!");
-                                                        }
-                                                    });
-                                                } else {
-                                                    if (!destroyed) {
-                                                        throw error;
-                                                    } else {
-                                                        // Si il n'y a pas d'erreur alors, l'erreur unlink est réussi
-                                                        console.log("File deleted!");
-                                                    }
-                                                }
-                                            }
-                                            // "error": "Ici, Internal error !"
-                                            res
-                                                .status(200)
-                                                .json({ message: "Utilisateur supprimée !" });
-                                        })
-                                        .catch((error) => {
-                                            console.error(error.message);
-                                            return res
-                                                .status(500)
-                                                .json({ error: "Ici, Internal error !" });
-                                        });
+                                        .then((post_destroyed) => Post.destroy({
+                                                where: { userId: deletedUser },
+                                            })
+                                            .then((post_destroyed) =>
+                                                User.destroy({
+                                                    where: {
+                                                        id: deletedUser,
+                                                    },
+                                                })
+                                                .then((destroyed) => {
+                                                    // "error": "Ici, Internal error !"
+                                                    res
+                                                        .status(200)
+                                                        .json({ message: "Utilisateur supprimée !" });
+                                                })
+                                                .catch((error) => {
+                                                    console.error(error.message);
+                                                    return res
+                                                        .status(500)
+                                                        .json({ error: error.message });
+                                                })
+                                            )
+                                            .catch(error => {
+                                                return res
+                                                    .status(500)
+                                                    .json({ error: error.message });
+                                            })
+                                        )
                                 } else {
                                     res
                                         .status(403)

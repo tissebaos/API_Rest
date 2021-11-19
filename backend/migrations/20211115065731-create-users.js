@@ -45,6 +45,8 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             }
+        }, {
+            onDelete: 'CASCADE'
         });
     },
     down: async(queryInterface, Sequelize) => {
